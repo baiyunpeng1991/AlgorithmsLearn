@@ -3,16 +3,15 @@ package com.algorithms.chapter.chapter1.collection.nodeImpl;
 import java.util.Iterator;
 import java.util.NoSuchElementException;
 
-/**
- * use the node to implements the stack(LIFO);
- * it's not thread safe when concurrent;
- * @param <Item>
- */
-public class StackNode<Item> implements Iterable<Item> {
+public class QueueNode<Item> implements Iterable<Item> {
     /**
      * first node for record
      */
     private Node first;
+    /**
+     * last node for record
+     */
+    private Node last;
     /**
      *  record size
      */
@@ -26,27 +25,30 @@ public class StackNode<Item> implements Iterable<Item> {
         Node next;
     }
 
-    public void push(Item item){
-        // record the first node to old node
-        Node oldNode = first;
-        // create new node
-        first = new Node();
-        first.item = item;
-        // replace the first node to old node
-        first.next = oldNode;
-        N++;
+    public void enqueue(Item item){
+      Node lastNode = last;
+      last = new Node();
+      last.item = item;
+      last.next = null;
+      if (isEmpty()){
+          first = last;
+      }else {
+          lastNode.next = last;
+      }
+       N++;
     }
 
-    public Item pop(){
-        if (isEmpty()){
+    public Item dequeue(){
+        if (N == 0){
             throw new NoSuchElementException();
         }
-        //recode the next node
         Node node = first.next;
         Item item = first.item;
-        // replace the next node to first node
         first = node;
         N--;
+        if (isEmpty()){
+            last = null;
+        }
         return item;
     }
 
@@ -61,7 +63,6 @@ public class StackNode<Item> implements Iterable<Item> {
     public Iterator<Item> iterator() {
         return new NodeIterator();
     }
-
 
     private class NodeIterator implements Iterator<Item>{
 
