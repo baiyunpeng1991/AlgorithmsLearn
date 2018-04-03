@@ -57,6 +57,7 @@ public class StackNode<Item> implements Iterable<Item> {
         return null;
     }
 
+    
     class StackIterator implements Iterator<Item>{
 
         public boolean hasNext() {
