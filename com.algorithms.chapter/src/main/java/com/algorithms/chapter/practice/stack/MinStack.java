@@ -33,6 +33,9 @@ public class MinStack {
         return lessTimeMinStack;
     }
 
+    /**
+     * 实现方式一
+     */
    private static class LessSpaceMinStack {
        private Stack<Integer> dataStack;
        private Stack<Integer> minStack;
@@ -68,6 +71,9 @@ public class MinStack {
         }
     }
 
+    /**
+     * 实现方式二
+     */
     private static class LessTimeMinStack {
         private Stack<Integer> dataStack;
         private Stack<Integer> minStack;
