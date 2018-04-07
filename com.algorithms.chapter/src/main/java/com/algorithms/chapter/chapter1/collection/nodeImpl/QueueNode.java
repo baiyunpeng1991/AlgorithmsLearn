@@ -2,7 +2,11 @@ package com.algorithms.chapter.chapter1.collection.nodeImpl;
 
 import java.util.Iterator;
 import java.util.NoSuchElementException;
-
+/**
+ * use the node to implements the queue(FIFO);
+ * it's not thread safe when concurrent;
+ * @param <Item>
+ */
 public class QueueNode<Item> implements Iterable<Item> {
     /**
      * first node for record
